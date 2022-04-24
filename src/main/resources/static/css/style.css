@@ -1,0 +1,251 @@
+.colorTextWhite{
+    color: white;
+    font-size: 15px;
+}
+.logoTextGlow {
+    color: #63B8DE;
+    position: relative;
+    left: -10px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 2px;
+    font-family: Russo One;
+
+    cursor: pointer;
+    background: linear-gradient(45deg, #ffffff, rgb(185, 236, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 2px solid rgb(99, 184, 222);
+}
+
+.logoTextGlow span {
+    transition: all .3s;
+}
+
+.logoTextGlow span:hover {
+    font-weight: 900;
+    text-shadow: 0 0 10px #ffffff,
+    0 0 30px #ffffff,
+    0 0 80px #008cff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: rgb(255, 255, 255);
+}
+
+.greetingContainer {
+    width: max-content;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.greetingText {
+    color: #fff;
+    font-size: 30px;
+    letter-spacing: 2px;
+    display: block;
+    position: relative;
+}
+
+/*Кнопка*/
+
+.greetingBtn {
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    padding: 10px 10px;
+    font-family: Russo One;
+    text-decoration: none;
+    font-size: 25px;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: 0.2s;
+    text-shadow: 0 0 10px #4b89a4, 0 0 40px #63B8DE;
+}
+.button__line {
+    position: absolute;
+    display: block;
+}
+.button__line--top{
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #63B8DE);
+}
+.greetingBtn:hover .button__line--top{
+    left: 100%;
+    transition: 1s;
+    transition-delay: 0.25s ;
+}
+
+.button__line--bottom{
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(270deg, transparent, #63B8DE);
+}
+.greetingBtn:hover .button__line--bottom{
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.25s ;
+}
+
+.button__line--left{
+    bottom: -100%;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(0deg, transparent, #63B8DE);
+}
+.greetingBtn:hover .button__line--left{
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0s ;
+}
+.button__line--right{
+    top: -100%;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #63B8DE);
+}
+.greetingBtn:hover .button__line--right{
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0s ;
+}
+.greetingBtn:hover{
+    box-shadow: 0 0 10px #63B8DE, 0 0 40px #63B8DE;
+    color: #fff;
+    background-color: #63B8DE;
+    transition-delay: .5s;
+}
+
+/*Список отделов*/
+.departmentList {
+    align-items: inherit;
+    justify-content: inherit;
+}
+
+.departmentList span {
+    color: #63B8DE;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #73CCE7, #256BC6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 5px;
+    transition: all .3s;
+}
+
+.departmentList span:hover {
+    text-shadow: 0 0 10px #04418e,
+    0 0 30px #04418e,
+    0 0 80px #04418e;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #fff;
+}
+
+/*Текст*/
+.text{
+    font-family: Russo One;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.radius_all {
+    border-radius: 15px;
+}
+.radius_left {
+    border-radius: 15px 0 0 15px;
+}
+.radius_right {
+    border-radius: 0 15px 15px 0;
+}
+.radius_top {
+    border-radius: 0 15px 15px 0;
+}
+
+/*Таблица*/
+
+.container__table {
+    max-width: 1600px;
+    margin: 0 auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.table__list{
+    vertical-align: bottom;
+    width: 100%;
+    border-radius: 15px;
+
+}
+.table td, .head_table{
+    text-align: center;
+    padding: 10px;
+}
+.head_table{
+    background-color: rgb(26, 124, 185);
+    color: #fff;
+    cursor: pointer;
+    height: 50px;
+}
+.head_table_button{
+    background-color: rgb(26, 124, 185);
+    color: #fff;
+
+}
+.m1{
+    border-radius: 15px 0 0 0;
+}
+.m2 {
+    border-radius: 0 15px 0 0;
+}
+.tbody_white{
+    background-color: rgb(255, 255, 255);
+    border-radius: 0 0 15px 15px;
+    padding-bottom: 5px;
+}
+.form-add{
+    border: 1px solid #00a9ff;
+    border-radius: 5px;
+    padding: 5px;
+}
+.form-add:after  {
+    background-color: rgb(26, 124, 185);
+    text-decoration-color: white;
+}
+.form-filter{
+    padding-left: 10px;
+    box-shadow: 0 0 20px rgba(0, 140, 255, 0.79);
+
+}
+.form-filter:focus{
+    padding-left: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.66), 0 0 20px rgba(0, 188, 255, 0.65);
+}
+
+.padding-25px {
+    padding: 25px;
+}
+
+.border-radius-15 {
+    border-radius: 0 0 15px 15px;
+}
+
+.login {
+    display: grid;
+  place-content: center;
+}
+
