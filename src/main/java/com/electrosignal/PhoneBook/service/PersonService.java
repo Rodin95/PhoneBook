@@ -2,7 +2,7 @@ package com.electrosignal.PhoneBook.service;
 
 import com.electrosignal.PhoneBook.domain.Person;
 import com.electrosignal.PhoneBook.domain.User;
-import com.electrosignal.PhoneBook.repos.PhoneBookRepo;
+import com.electrosignal.PhoneBook.repos.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonService {
     @Autowired
-    private PhoneBookRepo phoneBookRepo;
+    private PersonRepo personRepo;
 
     public Page<Person> personList(Pageable pageable, String filter) {
         if (filter != null && !filter.isEmpty()) {
-            return phoneBookRepo.findByFirstNameContainingIgnoreCaseOrSecondNameContainingIgnoreCaseOrThirdNameContainingIgnoreCaseOrDepartmentContainingIgnoreCaseOrPositionContainingIgnoreCaseOrPhoneNumberContainingIgnoreCaseOrLocationContainingIgnoreCase(filter, filter, filter, filter, filter, filter, filter, pageable);
+            return personRepo.findByFirstNameContainingIgnoreCaseOrSecondNameContainingIgnoreCaseOrThirdNameContainingIgnoreCaseOrDepartmentContainingIgnoreCaseOrPositionContainingIgnoreCaseOrPhoneNumberContainingIgnoreCaseOrLocationContainingIgnoreCase(filter, filter, filter, filter, filter, filter, filter, pageable);
         } else {
-            return phoneBookRepo.findAll(pageable);
+            return personRepo.findAll(pageable);
         }
     }
 
     public Page<Person> personListForUser(Pageable pageable, User currentUser, User author) {
-        return phoneBookRepo.findByUser(pageable, author);
+        return personRepo.findByUser(pageable, author);
     }
 }

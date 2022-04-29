@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface PhoneBookRepo extends CrudRepository<Person, Long> {
+public interface PersonRepo extends CrudRepository<Person, Long> {
 
     Page<Person> findAll(Pageable pageable);
     Page<Person> findByFirstNameContainingIgnoreCaseOrSecondNameContainingIgnoreCaseOrThirdNameContainingIgnoreCaseOrDepartmentContainingIgnoreCaseOrPositionContainingIgnoreCaseOrPhoneNumberContainingIgnoreCaseOrLocationContainingIgnoreCase(String firstName, String secondName, String thirdName, String department, String position, String phoneNumber, String location, Pageable pageable);

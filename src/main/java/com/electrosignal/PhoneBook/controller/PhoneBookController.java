@@ -2,7 +2,7 @@ package com.electrosignal.PhoneBook.controller;
 
 import com.electrosignal.PhoneBook.domain.Person;
 import com.electrosignal.PhoneBook.domain.User;
-import com.electrosignal.PhoneBook.repos.PhoneBookRepo;
+import com.electrosignal.PhoneBook.repos.PersonRepo;
 import com.electrosignal.PhoneBook.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,7 +30,7 @@ import java.util.UUID;
 @Controller
 public class PhoneBookController {
     @Autowired
-    private PhoneBookRepo phoneBookRepo;
+    private PersonRepo personRepo;
 
     @Autowired
     private PersonService personService;
@@ -86,7 +86,7 @@ public class PhoneBookController {
 
             saveFile(person, file);
             model.addAttribute("person", null);
-            phoneBookRepo.save(person);
+            personRepo.save(person);
 
         }
 
@@ -169,7 +169,7 @@ public class PhoneBookController {
 
             saveFile(person, file);
 
-            phoneBookRepo.save(person);
+            personRepo.save(person);
         }
         return "redirect:/phoneBook";
     }
@@ -179,7 +179,7 @@ public class PhoneBookController {
             @RequestParam("person") Long personId,
             @PathVariable String user) {
 
-        phoneBookRepo.deleteById(personId);
+        personRepo.deleteById(personId);
 
         return "redirect:/phoneBook";
     }
