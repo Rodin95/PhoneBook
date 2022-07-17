@@ -96,23 +96,6 @@ public class PhoneBookController {
     }
 
 
-
-    @GetMapping("/user-persons/{author}")
-    public String userPersons(
-            @AuthenticationPrincipal User currentUser,
-            @PathVariable User author,
-            Model model,
-            @RequestParam(required = false) Person person,
-            @PageableDefault(sort = {"department"}, direction = Sort.Direction.ASC) Pageable pageable
-    ) {
-        Page<Person> page = peopleService.personListForUser(pageable, currentUser, author);
-
-        model.addAttribute("page", page);
-        model.addAttribute("person", person);
-        model.addAttribute("isCurrentUser", currentUser.equals(author));
-        return "userPersons";
-    }
-
     @PostMapping("/user-persons/{user}")
     public String updatePerson(
             @AuthenticationPrincipal User currentUser,
