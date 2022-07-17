@@ -5,7 +5,7 @@ import com.electrosignal.PhoneBook.model.User;
 import com.electrosignal.PhoneBook.repository.PeopleRepository;
 import com.electrosignal.PhoneBook.service.PeopleService;
 import com.electrosignal.PhoneBook.utils.ControllerUtils;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -22,22 +22,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class PhoneBookController {
-    private final PeopleRepository peopleRepository;
 
     private final PeopleService peopleService;
 
-    @Value("${upload.path}")
-    private String uploadPath;
 
-    public PhoneBookController(PeopleRepository peopleRepository, PeopleService peopleService) {
-        this.peopleRepository = peopleRepository;
+    @Autowired
+    public PhoneBookController(PeopleService peopleService) {
         this.peopleService = peopleService;
     }
 
@@ -87,9 +82,9 @@ public class PhoneBookController {
 
         } else {
 
-            saveFile(person, file);
+            peopleService.saveFile(person, file);
             model.addAttribute("person", null);
-            peopleRepository.save(person);
+            peopleService.save(person);
 
         }
 
@@ -100,22 +95,7 @@ public class PhoneBookController {
         return "phoneBook";
     }
 
-    public void saveFile(@Valid Person person, @RequestParam("file") MultipartFile file) throws IOException {
-        if (file != null && !file.getOriginalFilename().isEmpty()) {
-            File uploadDir = new File(uploadPath);
 
-            if (!uploadDir.exists()) {
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFilename = uuidFile + "." + file.getOriginalFilename();
-
-            file.transferTo(new File(uploadPath + "/" + resultFilename));
-
-            person.setFilename(resultFilename);
-        }
-    }
 
     @GetMapping("/user-persons/{author}")
     public String userPersons(
@@ -170,9 +150,9 @@ public class PhoneBookController {
                 person.setLocation(location);
             }
 
-            saveFile(person, file);
+            peopleService.saveFile(person, file);
 
-            peopleRepository.save(person);
+            peopleService.save(person);
         }
         return "redirect:/phoneBook";
     }
@@ -182,7 +162,7 @@ public class PhoneBookController {
             @RequestParam("person") Long personId,
             @PathVariable String user) {
 
-        peopleRepository.deleteById(personId);
+        peopleService.deletePerson(personId);
 
         return "redirect:/phoneBook";
     }

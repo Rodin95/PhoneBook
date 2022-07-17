@@ -16,10 +16,12 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
@@ -70,9 +72,8 @@ public class UserController {
     @GetMapping("/user-del/{user}")
     public String deleteUser(
             @RequestParam("user") Long userId,
-            @PathVariable String user
-    ) {
-        userRepository.deleteById(userId);
+            @PathVariable String user) {
+        userService.delete(userId);
 
         return "redirect:/phoneBook";
     }

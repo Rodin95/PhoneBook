@@ -3,6 +3,7 @@ package com.electrosignal.PhoneBook.controllers;
 import com.electrosignal.PhoneBook.mappers.PeopleMapper;
 import com.electrosignal.PhoneBook.model.Person;
 import com.electrosignal.PhoneBook.service.PeopleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ public class JsonResponseController {
 
     private final PeopleService peopleService;
 
+    @Autowired
     public JsonResponseController(PeopleService peopleService) {
         this.peopleService = peopleService;
     }
