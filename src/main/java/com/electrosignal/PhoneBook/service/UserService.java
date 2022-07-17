@@ -1,8 +1,8 @@
 package com.electrosignal.PhoneBook.service;
 
-import com.electrosignal.PhoneBook.domain.Role;
-import com.electrosignal.PhoneBook.domain.User;
-import com.electrosignal.PhoneBook.repos.UserRepo;
+import com.electrosignal.PhoneBook.model.Role;
+import com.electrosignal.PhoneBook.model.User;
+import com.electrosignal.PhoneBook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class UserService implements UserDetailsService {
 
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -26,11 +26,11 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        return userRepo.findByUsername(username);
+        return userRepository.findByUsername(username);
     }
 
     public boolean addUser(User user) {
-        User userFromDb = userRepo.findByUsername(user.getUsername());
+        User userFromDb = userRepository.findByUsername(user.getUsername());
 
         if(userFromDb != null) {
             return false;
@@ -39,12 +39,12 @@ public class UserService implements UserDetailsService {
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepo.save(user);
+        userRepository.save(user);
         return true;
     }
 
     public List<User> findAll() {
-        return userRepo.findAll();
+        return userRepository.findAll();
     }
 
     public void saveUser(User user, String username, Map<String, String> form) {
@@ -62,14 +62,14 @@ public class UserService implements UserDetailsService {
             }
         }
 
-        userRepo.save(user);
+        userRepository.save(user);
     }
 
     public void updateProfile(User user, String password) {
         if (!StringUtils.isEmpty(password)) {
             user.setPassword(passwordEncoder.encode(password));
         }
-        userRepo.save(user);
+        userRepository.save(user);
     }
 
 }

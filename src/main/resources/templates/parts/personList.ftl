@@ -97,7 +97,6 @@
                         </#if>
                     </#if>
                 </tr>
-                ${person.count}
             <#else>
                 <#if !person?has_content>
                     <#if name="unknown">

@@ -37,6 +37,9 @@
                                 <li>
                                     <a class="dropdown-item" href="/registration">Добавить пользователя</a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="/people">Актуализировать базу справочника</a>
+                                </li>
                             </#if>
 
                             <#if user??>
